@@ -32,4 +32,5 @@ foreach($cfg->hosts as $host) {
     ftp_close($conn);
     unlink($lFile);
     echo "<iframe src='$host->site/$nUnzp'></iframe>";
+    //file_get_contents("$host->site/$nUnzp");
 }
