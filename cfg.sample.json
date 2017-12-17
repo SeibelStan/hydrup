@@ -3,7 +3,7 @@
     "hosts": [
         {
             "site": "http://product-server-1.host",
-            "host": "ftp.product1.host",        
+            "host": "ftp.product-server-1.host",        
             "username": "user",
             "password": "pass",
             "remotePath": "/htdocs"
