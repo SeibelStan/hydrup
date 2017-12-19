@@ -5,8 +5,8 @@ ini_set('display_errors', 1);
 
 $cfg = json_decode(file_get_contents('cfg.json'));
 
-$nFile = basename($cfg->source);
-$lFile = 'tmp/' . $nFile;
+$nFile = 'dist.zipx';
+$lFile = "tmp/$nFile";
 $lUnzp = 'unzip.php';
 $nUnzp = basename($lUnzp);
 
@@ -19,10 +19,11 @@ foreach($cfg->hosts as $host) {
 
     $conn = ftp_connect($host->host);
     ftp_login($conn, $host->username, $host->password);
+    ftp_pasv($conn, 1);
 
     foreach(ftp_nlist($conn, $host->remotePath) as $path) {
-        if(!in_array($path, ['.', '..'])) {
-            ftp_delete($conn, "$host->remotePath/$path");
+        if(!in_array($path, ['', '.', '..'])) {
+            ftp_delete($conn, "$host->deleteDir/$path");
         }
     }
 
@@ -30,7 +31,8 @@ foreach($cfg->hosts as $host) {
     ftp_put($conn, $rUnzp, $lUnzp, FTP_BINARY);
 
     ftp_close($conn);
-    unlink($lFile);
     echo "<iframe src='$host->site/$nUnzp'></iframe>";
     //file_get_contents("$host->site/$nUnzp");
 }
+
+unlink($lFile);

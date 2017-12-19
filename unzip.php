@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$nZip = 'build.zip';
+$nZip = 'dist.zipx';
 $zip = new ZipArchive;
 $res = $zip->open($nZip);
 

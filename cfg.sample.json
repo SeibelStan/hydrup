@@ -6,7 +6,8 @@
             "host": "ftp.product-server-1.host",        
             "username": "user",
             "password": "pass",
-            "remotePath": "/htdocs"
+            "remotePath": "/htdocs",
+            "deleteDir": 1
         }
     ]
 }
